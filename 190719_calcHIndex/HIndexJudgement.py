@@ -24,6 +24,7 @@ def HIndexJudgement(graphFile,n):
 		net2gml.net2gml(graphFile)
 	
 	nxG = nx.read_gml(graphFileName+'.gml')
+	nxG = nx.convert_node_labels_to_integers(nxG)
 	igG = ig.Graph.Read_GML(graphFileName+'.gml')
 	
 	start_time = time.clock()
