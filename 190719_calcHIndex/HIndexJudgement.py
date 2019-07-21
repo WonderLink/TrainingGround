@@ -5,6 +5,7 @@ import igraph as ig
 
 import edgelist2gml
 import net2gml
+import h_index
 
 def HIndexJudgement(graphFile,n):
 	'''
@@ -48,5 +49,6 @@ def calcHIndexValues(nxG,igG,n):
 	@return:
 		results: n-order H Index values of graph, type: List;
 	'''
-	result = []
+	result = h_index.h_index_n(nxG,igG,n)
+	
 	return result
