@@ -23,9 +23,11 @@ def h_index(G ,index_list):
     return len(index_list)     
 
 
-def h_index_n(G_test, n):
-    G = nx.read_edgelist('./dataset/{}'.format(G_test),nodetype = int)
+G = nx.read_edgelist('./dataset/test.edgelist',nodetype = int)
+def h_index_n(G, n):
+#    G = nx.read_edgelist('./dataset/{}'.format(G),nodetype = int)
     h_dic = {}
+    h_index_list = []
     neighbor_h_index_list = []
     nodes = nx.nodes(G)
     for node in nodes:
@@ -33,6 +35,7 @@ def h_index_n(G_test, n):
         h_dic[node] = h_index(G, neighbor_degree_list)
     h_index_dic = h_dic.copy()
     for node in nodes:
+        neighbor_degree_list = neighbor_degree(G, node)
         for neighbor in nx.neighbors(G, node):
             neighbor_h_index_list.append(h_index_dic[neighbor])
         if n == 0:
@@ -42,12 +45,16 @@ def h_index_n(G_test, n):
         if n == 2:
             h_index_dic[node] = h_index(G, neighbor_h_index_list)
         if n > 2:
-            h_index_dic = h_index_n(G_test, n-1)
+            m = []    
+            for neighbor in nx.neighbors(G, node):
+                m.append(h_index_dic[neighbor])
+            h_index_dic[node] = h_index(G, m)
         neighbor_h_index_list = []
+    for value in h_index_dic.values():
+        h_index_list.append(value)
+    return h_index_list
     
-    return h_index_dic
     
-    
-h_index_n = h_index_n('dolphins.edgelist', 0)
+h_index_n = h_index_n(G, 3)
     
         
