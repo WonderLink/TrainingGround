@@ -23,8 +23,8 @@ def h_index(G ,index_list):
     return len(index_list)     
 
 
-G = nx.read_edgelist('./dataset/test.edgelist',nodetype = int)
-def h_index_n(G, n):
+#G = nx.read_edgelist('./dataset/test.edgelist',nodetype = int)
+def h_index_n(G,igG, n):
 #    G = nx.read_edgelist('./dataset/{}'.format(G),nodetype = int)
     h_dic = {}
     h_index_list = []
@@ -55,6 +55,6 @@ def h_index_n(G, n):
     return h_index_list
     
     
-h_index_n = h_index_n(G, 3)
+#h_index_n = h_index_n(G, 3)
     
         
