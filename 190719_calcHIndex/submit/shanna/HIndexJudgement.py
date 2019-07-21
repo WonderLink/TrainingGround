@@ -60,7 +60,7 @@ def cal_h_index(G,n,h_neg_dic):
     else :
         h_index_dic = {}
         n = n-1
-        h0_index_dic = cal_h_index(G,n)
+        h0_index_dic = cal_h_index(G,n,h_neg_dic)
         # print(n,h0_index_dic)
         for n_i in nx.nodes(G):
             h_list = []
@@ -77,8 +77,8 @@ def calcHIndexValues(nxG,igG,n):
         for neg in nx.neighbors(nxG, n_i):
             a.append(neg)
         h_neg_dic[n_i] = a
-	result_dic = cal_h_index(nxG,n,h_neg_dic)
-	result = []
-	for val in result_dic.values():
-		result.append(val)
-	return result
+    result_dic = cal_h_index(nxG,n,h_neg_dic)
+    result = []
+    for val in result_dic.values():
+        result.append(val)
+    return result
