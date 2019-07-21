@@ -1,5 +1,6 @@
 import networkx as nx
 import net2gml
+import edgelist2gml
 import time
 
 
@@ -42,23 +43,22 @@ def getGraphHn(G, n):
     return HnDic
 
 
-def getGraph(filename):
-    graphFileName, graphFileFormat = filename.split(".", 1)
+def getGraph(graphFile):
+    graphFileName, graphFileFormat = graphFile.split(".", 1)
 
     if graphFileFormat == 'edgelist':
-        G = nx.read_edgelist(filename, nodetype=int)
-    elif graphFileFormat == 'gml':
-        G = nx.read_gml(filename)
+        edgelist2gml.edgelist2gml(graphFile)
     elif graphFileFormat == 'net':
-        net2gml.net2gml(filename)
-        G = nx.read_gml(graphFileName + '.gml')
-    return G
+        net2gml.net2gml(graphFile)
+
+    nxG = nx.read_gml(graphFileName + '.gml', label='id')
+    return nxG
 
 def HIndexJudgement(graphFile,n):
     G = getGraph(graphFile)
 
     star_time = time.perf_counter()
-    GraphHnDic = getGraphHn(G, 3)
+    GraphHnDic = getGraphHn(G, n)
     end_time = time.perf_counter()
 
     GraphHnSortedDicTuple = sorted(GraphHnDic.items(), key=lambda item: int(item[0]))
