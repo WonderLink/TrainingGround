@@ -1,3 +1,3 @@
 import HIndexJudgement
 
-print(HIndexJudgement.HIndexJudgement('power.edgelist',2))
+print(HIndexJudgement.HIndexJudgement('demo190719.edgelist',1))

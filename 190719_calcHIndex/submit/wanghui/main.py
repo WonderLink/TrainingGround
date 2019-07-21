@@ -48,8 +48,8 @@ def H_index(G, n, neighbors):  #G为网络 n为H_index的阶数
         degrees = H_index(G, n-1, neighbors)
         nodes = G.nodes()
         h_index = {}
-        for node in nodes:
-            degrees[node] = G.degree(node)
+        # for node in nodes:
+        #     degrees[node] = G.degree(node)
         for node in nodes:
             h_index[node] = 0
             for i in range(1, degrees[node] + 1):
