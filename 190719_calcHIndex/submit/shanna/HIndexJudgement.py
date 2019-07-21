@@ -49,14 +49,8 @@ def count_h_index(h_list):
         i += 1
     return i
 
-def cal_h_index(G,n):
+def cal_h_index(G,n,h_neg_dic):
     assert n >= 0, 'n>=0' #保证n>=0,否则报错
-    h_neg_dic = {}  # 保存每个节点的邻居节点
-    for n_i in nx.nodes(G):
-        a = []
-        for neg in nx.neighbors(G, n_i):
-            a.append(neg)
-        h_neg_dic[n_i] = a
     #0阶
     if n == 0:
         h_index_dic = {} #每个节点的0阶h指数
@@ -76,15 +70,14 @@ def cal_h_index(G,n):
         return h_index_dic
 
 def calcHIndexValues(nxG,igG,n):
-	'''
-	@params:
-		nxG: networkx object;
-		igG: igraph object;
-		n: n-order;
-	@return:
-		results: n-order H Index values of graph, type: List;
-	'''
-	result_dic = cal_h_index(nxG, n)
+
+    h_neg_dic = {}
+    for n_i in nx.nodes(nxG):
+        a = []
+        for neg in nx.neighbors(nxG, n_i):
+            a.append(neg)
+        h_neg_dic[n_i] = a
+	result_dic = cal_h_index(nxG,n,h_neg_dic)
 	result = []
 	for val in result_dic.values():
 		result.append(val)
