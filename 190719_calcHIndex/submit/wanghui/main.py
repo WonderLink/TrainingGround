@@ -11,8 +11,11 @@ def HIndex(G,number):
             neighbors[node].append(i)
     h_index = H_index(G, N, neighbors)
     # print(h_index)
-    h_index = dict(sorted(h_index.items(), key=lambda item: int(item[0]), reverse=False))
-    return h_index
+    # h_index = dict(sorted(h_index.items(), key=lambda item: int(item[0]), reverse=False))
+    result = []
+    for i in h_index.values():
+        result.append(i)
+    return result
     # filename = 'result/dolphins_5' + str(n) + '.txt'
     # with open(filename, 'w') as file:
     #     for a, b in h_index.items():
