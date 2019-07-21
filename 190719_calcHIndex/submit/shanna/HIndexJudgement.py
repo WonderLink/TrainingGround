@@ -33,7 +33,7 @@ def HIndexJudgement(graphFile,n):
 	end_time = time.clock()
 	calcTime = end_time - start_time
 	
-	return (calcTime,result)
+	return (result,calcTime)
 	
 def calcH0IndexValues(nxG,igG):
 	result = [nxG.degree(v) for v in nx.nodes(nxG)]
